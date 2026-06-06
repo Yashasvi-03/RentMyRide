@@ -1,0 +1,150 @@
+
+1------------------register-------------------------
+http://localhost:5000/api/auth/register:-POST:-admin,
+{
+  "name": "Yash",
+  "email": "yash@gmail.com",
+  "password": "123456",
+  "role": "customer",
+  "address": "Palanpur",
+  "contactNumber": "9999999999"
+}
+
+{
+  "name": "Admin",
+  "email": "admin@gmail.com",
+  "password": "123456",
+  "role": "admin",
+  "address": "Ahmedabad",
+  "contactNumber": "9999999999"
+}
+
+{
+  "name": "Agency Owner",
+  "email": "agency@gmail.com",
+  "password": "123456",
+  "role": "agency",
+  "agencyName":"Yash Travels",
+  "address": "Ahmedabad",
+  "contactNumber": "9999999999"
+}
+
+###############Login##################
+http://localhost:5000/api/auth/login:-POST
+{
+  "email": "yash@gmail.com",
+  "password": "123456"
+}
+Header:-Bearer token
+
+{
+  "email":"agency@gmail.com",
+  "password":"123456"
+}
+
+
+
+###################get Alll agencies#########################
+http://localhost:5000/api/admin/agencies:-get all agencies
+and header in token is admin token add
+
+
+
+
+flow:-
+Register Admin
+Register Agency
+Login Admin
+Approve Agency
+Login Agency
+
+
+------------------Approve agency by admin------------------------------
+put:-http://localhost:5000/api/admin/approve/69c614ef5fd5d568f228c220:-approve ageincy by admin after the angency login 
+and header in admin token and auth in bearer admin token addd
+
+
+
+
+
+
+4. Add Car (Agency)--------------------
+http://localhost:5000/api/cars/add:- 
+Header:
+Authorization: Bearer AGENCY_TOKEN
+Auth:-
+Auth:-ma pan token nakhavi
+
+{
+  "name": "Swift",
+  "brand": "Maruti",
+  "pricePerDay": 1000,
+  "image": "url",
+  "location": "Ahmedabad",
+  "type": "Hatchback",
+  "fuelType": "Petrol",
+  "seatingCapacity": 5
+}
+
+5. Get Cars (Public)
+http://localhost:5000/api/cars
+all data show
+
+6. Create Booking (Customer)
+http://localhost:5000/api/bookings/create
+Header:
+Authorization: Bearer CUSTOMER_TOKEN
+body:-
+{
+  "carId": "CAR_ID",
+  "fromDate": "2026-04-01",
+  "toDate": "2026-04-03",
+  "address": "XYZ Street",
+  "city": "Ahmedabad",
+  "pincode": "380001"
+}
+
+
+🔹 7. Get My Bookings
+GET:- http://localhost:5000/api/bookings/my
+header:- add customer token 
+
+🔹 8. Agency View Bookings
+GET:- http://localhost:5000/api/bookings/agency
+Header in agency token add
+
+🔹 9. Update Booking Status (Agency)
+http://localhost:5000/api/bookings/agency:- amaa je output ma je peli id aave te nakhavani id ma
+PUT:-http://localhost:5000/api/bookings/status/69c7ccdfd53c9dcb7bb8570d
+body:-
+{
+  "status": "confirmed"
+}
+header:- agency token
+
+🔹 10. Cancel Booking (Customer)
+PUT:- http://localhost:5000/api/bookings/cancel/69c7ccdfd53c9dcb7bb8570d
+custome ki id and token dalna hai 
+
+🔹 11. Payment (Optional)
+POST http://localhost:5000/api/payment/create-order
+{
+  "amount": 3000
+}
+header :- user token
+
+
+12.payment verify
+http://localhost:5000/api/payment/verify:-POST
+{
+  "bookingId":"69c7ccdfd53c9dcb7bb8570d"
+}
+header :-user token
+
+
+13.@@@@@@@@@@@@@@@------Profile---------@@@@@@@
+http://localhost:5000/api/users/profile:-GET
+Bearer in user token add
+
+http://localhost:5000/api/users/profile:-PUT
+update the profile and add the user token
