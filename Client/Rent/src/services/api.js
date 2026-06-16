@@ -2,7 +2,8 @@ import axios from "axios";
 // import { getToken } from "./authHelper";
 
 const API = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL:"https://rentmyride-f10r.onrender.com/api"
+    //  "http://localhost:5000/api",
 });
 
 
