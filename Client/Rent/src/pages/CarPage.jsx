@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import Navbar from "../components/Navbar";
@@ -11,6 +9,7 @@ import nodata from "../assets/no-data-found.mp4";
 function CarsPage() {
   const [cars, setCars] = useState([]);
   const [filteredCars, setFilteredCars] = useState([]);
+  const [showFilters, setShowFilters] = useState(false);
 
   const [filters, setFilters] = useState({
     location: "",
@@ -63,6 +62,38 @@ function CarsPage() {
     fetchCars();
   }, []);
 
+  // const applyFilters = () => {
+  //   let temp = [...cars];
+
+  //   if (filters.location) {
+  //     temp = temp.filter((c) =>
+  //       c.location?.toLowerCase().includes(filters.location.toLowerCase()),
+  //     );
+  //   }
+
+  //   if (filters.minPrice) {
+  //     temp = temp.filter((c) => c.pricePerDay >= filters.minPrice);
+  //   }
+
+  //   if (filters.maxPrice) {
+  //     temp = temp.filter((c) => c.pricePerDay <= filters.maxPrice);
+  //   }
+
+  //   if (filters.type) {
+  //     temp = temp.filter((c) => c.type === filters.type);
+  //   }
+
+  //   if (filters.fuelType) {
+  //     temp = temp.filter((c) => c.fuelType === filters.fuelType);
+  //   }
+
+  //   if (filters.seatingCapacity) {
+  //     temp = temp.filter((c) => c.seatingCapacity == filters.seatingCapacity);
+  //   }
+
+  //   setFilteredCars(temp);
+  //   setCurrentPage(1);
+  // };
   const applyFilters = () => {
     let temp = [...cars];
 
@@ -94,6 +125,9 @@ function CarsPage() {
 
     setFilteredCars(temp);
     setCurrentPage(1);
+
+    // Mobile par filter close
+    setShowFilters(false);
   };
 
   const resetFilters = () => {
@@ -105,9 +139,25 @@ function CarsPage() {
       fuelType: "",
       seatingCapacity: "",
     });
+
     setFilteredCars(cars);
     setCurrentPage(1);
+
+    setShowFilters(false);
   };
+
+  // const resetFilters = () => {
+  //   setFilters({
+  //     location: "",
+  //     minPrice: "",
+  //     maxPrice: "",
+  //     type: "",
+  //     fuelType: "",
+  //     seatingCapacity: "",
+  //   });
+  //   setFilteredCars(cars);
+  //   setCurrentPage(1);
+  // };
 
   const handleChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
@@ -121,10 +171,23 @@ function CarsPage() {
   return (
     <>
       <Navbar />
-
-      <div className="min-h-screen bg-gradient-to-br from-blue-950 via-gray-900 to-blue-950 text-white pt-24 px-6 flex gap-8">
+      <div className="min-h-screen bg-gradient-to-br from-blue-950 via-gray-900 to-blue-950 text-white pt-24 px-4 md:px-6 flex flex-col md:flex-row gap-8">
+        {/* <div className="min-h-screen bg-gradient-to-br from-blue-950 via-gray-900 to-blue-950 text-white pt-24 px-6 flex gap-8"> */}
+        <div className="md:hidden mb-4">
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl font-semibold"
+          >
+            {showFilters ? " Filters" : "Apply Filters"}
+          </button>
+        </div>
         {/* SIDEBAR SAME */}
-        <div className="w-72 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 h-fit sticky top-28">
+        <div
+          className={`${
+            showFilters ? "block" : "hidden"
+          } md:block w-full md:w-72 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 h-fit md:sticky md:top-28`}
+        >
+          {/* <div className="w-72 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 h-fit sticky top-28"> */}
           <h2 className="text-xl font-semibold mb-6">Filters</h2>
 
           <div className="space-y-4">
