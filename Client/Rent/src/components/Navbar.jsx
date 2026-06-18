@@ -424,8 +424,8 @@ function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    navigate("/login");
-    window.location.reload();
+    navigate("/login",{replace:true});
+    // window.location.reload();
   };
 
   return (
