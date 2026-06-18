@@ -81,7 +81,7 @@ function Hero({ setFilters }) {
           transition={{ delay: 0.7 }}
           className="bg-white/40 text-white rounded-2xl shadow-2xl p-6 max-w-[500px]"
         >
-          <div className="grid grid-cols-3 md:grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
             {/* Location */}
             <div className="flex flex-col">
               <label className="text-sm font-medium mb-1">Location</label>
