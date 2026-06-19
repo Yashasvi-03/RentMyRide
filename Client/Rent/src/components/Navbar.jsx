@@ -560,7 +560,7 @@ function Navbar() {
               navigate("/");
               setMenuOpen(false);
             }}
-            className="text-left hover:text-blue-400 transition"
+            className="text-left hover:text-blue-800 transition"
           >
             Home
           </button>
@@ -570,7 +570,7 @@ function Navbar() {
               navigate("/cars");
               setMenuOpen(false);
             }}
-            className="text-left hover:text-blue-400 transition"
+            className="text-left hover:text-blue-800 transition"
           >
             Cars
           </button>
@@ -603,6 +603,20 @@ function Navbar() {
             className="text-left hover:text-blue-400 transition"
           >
             MyBooking
+          </button>
+
+          {/* <User
+              onClick={() => navigate("/profile")}
+              className="hidden md:block cursor-pointer text-white hover:text-indigo-400 transition"
+            /> */}
+            <button
+            onClick={() => {
+              navigate("/profile");
+              setMenuOpen(false);
+            }}
+            className="text-left  hover:text-blue-400 transition"
+          >
+            Profile
           </button>
         </div>
       </div>

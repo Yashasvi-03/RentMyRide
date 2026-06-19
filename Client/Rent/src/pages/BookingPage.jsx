@@ -254,7 +254,7 @@ function BookingPage() {
       const to = new Date(form.toDate);
 
       if (from < todayDate.setHours(0, 0, 0, 0)) {
-        return toast.error("Past date allowed nahi Hai");
+        return toast.error("Past date is not allowed.");
       }
       if (to < from) {
         return toast.error("Invalid date range");
